@@ -4,20 +4,19 @@ public class Mapinguari extends Monstro {
     public Mapinguari(String nome, int pontosDeVida, int forca, int xpConcedido){
         super(nome, pontosDeVida, forca, xpConcedido);
         this.Raiva = 0; //Raiva inicial
+        arma = new Espada(xpConcedido/2 , 5);
     }
 
     public void atacar(Personagem alvo){
         if(Raiva >= 50){ //Mapinguari dara seu ataque rodada sim, rodada não, mas não se engane, seu ataque é muito poderoso.
             System.out.println(this.nome + " da uma grande mordida em " + alvo.getnome());
-            int dano = this.forca * 5;
+            int dano = this.forca * 5 + arma.getDano();
             alvo.receberDano(dano);
             this.Raiva -= 50;
         }
         else{ //Quando não conseguir atacar, Mapinguari dara um grito para demonstrar e aumentar a sua raiva
             System.out.println(this.nome + " usa grito feroz olhando para " + alvo.getnome());
-            int dano = this.forca;
-            alvo.receberDano(dano);
-            this.Raiva += 50;
+            this.Raiva += 20;
         }
     }
 

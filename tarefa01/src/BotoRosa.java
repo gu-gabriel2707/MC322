@@ -2,10 +2,11 @@ public class BotoRosa extends Heroi{
     public int mana; //recurso usado para ativar as habilidades
     public int Type;
 
-    public BotoRosa(String nome, int pontosDeVida, int forca, int nivel, int experiencia) {
-        super(nome, pontosDeVida, forca, nivel, experiencia);
+    public BotoRosa(String nome, int pontosDeVida, int forca, int nivel, int experiencia, int expProximoNivel) {
+        super(nome, pontosDeVida, forca, nivel, experiencia, expProximoNivel);
         this.Type = 1;
         this.mana = 0; //mana inicial
+        arma = new Cajado(0,0);
     }
 
     public void atacar(Personagem alvo){

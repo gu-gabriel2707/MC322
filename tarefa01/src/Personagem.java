@@ -3,11 +3,13 @@ public abstract class Personagem {
     public String nome;
     public int pontosDeVida;
     public int forca;
+    public Arma arma;
 
     public Personagem(String nome, int pontosDeVida, int forca){
         this.nome = nome;
         this.pontosDeVida = pontosDeVida;
         this.forca = forca;
+        this.arma = null;
     }
 
     public String getnome(){

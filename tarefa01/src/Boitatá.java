@@ -6,19 +6,18 @@ public class Boitatá extends Monstro{
 
     public Boitatá(String nome, int pontosDeVida, int forca, int xpConcedido) {
         super(nome, pontosDeVida, forca, xpConcedido);
+        queimar = false;
+        arma = new Arco(xpConcedido/2 , 2);
+    }
+
+    public void atacar(Personagem alvo){
+        System.out.println(this.nome + " usa Calda Flamejante e deixa " + alvo.getnome() + " queimando");
         Random gerador = new Random();
         if(gerador.nextInt(100)>80){ //chance de queimar e aumento do stack (acumulo), 20% de chance de queimar
             this.queimar = true;
             this.stack += 1;
         }
-        else{
-            this.queimar = false; //80% chance de não queimar
-        }
-    }
-
-    public void atacar(Personagem alvo){
-        System.out.println(this.nome + " usa Calda Flamejante e deixa " + alvo.getnome() + " queimando");
-        int dano = this.forca;
+        int dano = this.forca + arma.getDano();;
         if(queimar == true){
             dano += 5 * this.stack; //dano do queimar é baseado na quantidade de stack
 

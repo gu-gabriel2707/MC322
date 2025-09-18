@@ -5,11 +5,12 @@ public class Curupira extends Heroi{
     public int aptidao; //variavel utilizada para calcular a chance de acertar um ataque critico (2x o dano)
     public int mana; //recurso usado para ativar as habilidades
 
-    public Curupira(String nome, int pontosDeVida, int forca, int nivel, int experiencia) {
-        super(nome, pontosDeVida, forca, nivel, experiencia);
+    public Curupira(String nome, int pontosDeVida, int forca, int nivel, int experiencia, int expProximoNivel) {
+        super(nome, pontosDeVida, forca, nivel, experiencia, expProximoNivel);
         this.Type = 1;
         this.aptidao = 0;
         this.mana = 0;
+        arma = new Arco(0,0);
     }
 
     //ajuste da aptidão para não ser um valor negativo nem acima de 100

@@ -4,18 +4,19 @@ public class Cuca extends Monstro{
     public Cuca(String nome, int pontosDeVida, int forca, int xpConcedido){
         super(nome, pontosDeVida, forca, xpConcedido);
         this.mana = 30; //mana inicial
+        arma = new Cajado(xpConcedido/2 , 3);
     }
 
     public void atacar(Personagem alvo){
         if(mana >= 40){ //ataque forte
             System.out.println(this.nome + " conjura BOLA DE FOGO em" + alvo.getnome());
-            int dano = this.forca * 3;
+            int dano = this.forca * 3 + arma.getDano();
             alvo.receberDano(dano);
             this.mana -= 40; //gasto da mana
         }
         else{ //ataque fraco
             System.out.println(this.nome + " usa Míssil Mágico em" + alvo.getnome());
-            int dano = this.forca;
+            int dano = this.forca + + arma.getDano();
             alvo.receberDano(dano);
             this.mana += 10; //recuperaão da mana
         }

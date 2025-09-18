@@ -2,10 +2,11 @@ public class Saci extends Heroi {
     public int Type;
     public int mana; //recurso usado para ativar as habilidades
 
-    public Saci(String nome, int pontosDeVida, int forca, int nivel, int experiencia) {
-        super(nome, pontosDeVida, forca, nivel, experiencia);
+    public Saci(String nome, int pontosDeVida, int forca, int nivel, int experiencia, int expProximoNivel) {
+        super(nome, pontosDeVida, forca, nivel, experiencia, expProximoNivel);
         this.mana = 40; //mana inicial
         this.Type = 0;
+        arma = new Espada(0,0);
     }
 
     public void atacar(Personagem alvo){
