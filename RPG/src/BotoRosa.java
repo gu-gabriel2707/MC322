@@ -1,27 +1,8 @@
 public class BotoRosa extends Heroi{
-    public int mana; //recurso usado para ativar as habilidades
-    public int Type;
-
+    
     public BotoRosa(String nome, int pontosDeVida, int forca, int nivel, int experiencia, int expProximoNivel) {
         super(nome, pontosDeVida, forca, nivel, experiencia, expProximoNivel);
-        this.Type = 1;
         this.mana = 0; //mana inicial
-        arma = new Cajado(0,0);
-    }
-
-    public void atacar(Personagem alvo){
-        System.out.println(this.nome + " dá um Golpe de Rabo em " + alvo.getnome());
-        int dano = this.forca; //dano do ataque normal
-        alvo.receberDano(dano);
-        this.mana += 20; //meio de recuperação de mana
-    }
-
-    public void usarHabilidadeEspecial(Personagem alvo){
-        if(mana > 50){
-            System.out.println(this.nome + " se cura usando magia ");
-            this.pontosDeVida += 20; //quantidade de cura da habilidade
-        }
-        atacar(alvo); //após se curar ele faz sua rodada de ataque.
     }
 
     //introdução do personagem, exibição de status e explicação básica dos ataques da classe

@@ -1,5 +1,3 @@
-import java.util.Random;
-
 public class Boitatá extends Monstro{
     public boolean queimar; //variável usada para verificar se o alvo será queimado
     public int stack = 0; //poder de queimar é cumulativo, essa é a variável do quão acumulado está
@@ -7,24 +5,8 @@ public class Boitatá extends Monstro{
     public Boitatá(String nome, int pontosDeVida, int forca, int xpConcedido) {
         super(nome, pontosDeVida, forca, xpConcedido);
         queimar = false;
-        arma = new Arco(xpConcedido/2 , 2);
     }
-
-    public void atacar(Personagem alvo){
-        System.out.println(this.nome + " usa Calda Flamejante e deixa " + alvo.getnome() + " queimando");
-        Random gerador = new Random();
-        if(gerador.nextInt(100)>80){ //chance de queimar e aumento do stack (acumulo), 20% de chance de queimar
-            this.queimar = true;
-            this.stack += 1;
-        }
-        int dano = this.forca + arma.getDano();;
-        if(queimar == true){
-            dano += 5 * this.stack; //dano do queimar é baseado na quantidade de stack
-
-        }
-        alvo.receberDano(dano);
-    }
-
+    
     //introdução do personagem, exibição de status e explicação básica dos ataques da classe
     public void exibirStatus(){
         System.out.println("#############################################################################################################");

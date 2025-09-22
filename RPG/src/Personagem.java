@@ -1,29 +1,42 @@
-public abstract class Personagem {
+public abstract class Personagem implements Combatente {
     // variaveis obrigatorias
-    public String nome;
-    public int pontosDeVida;
-    public int forca;
-    public Arma arma;
+    protected String nome;
+    protected int pontosDeVida;
+    protected int forca;
+    protected Arma arma;
 
     public Personagem(String nome, int pontosDeVida, int forca){
         this.nome = nome;
         this.pontosDeVida = pontosDeVida;
         this.forca = forca;
         this.arma = null;
+        
     }
 
-    public String getnome(){
+    public String getNome(){
         return this.nome;
     }
     public int getpontosDeVida(){
         return this.pontosDeVida;
     }
+
+    public boolean estaVivo(){
+        if(this.pontosDeVida > 0){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public int getforca(){
         return this.forca;
     }
 
-    public int receberDano(int dano){
-        return pontosDeVida -= dano;
+    public void receberDano(int dano){
+        pontosDeVida -= dano;
+    }
+    public void receberCura(int cura){
+        pontosDeVida += cura;
     }
 
     //mostrar status
@@ -32,7 +45,4 @@ public abstract class Personagem {
         System.out.println("pontos de vida:" +pontosDeVida);
         System.out.println("força:" +forca);
     }
-
-    //definição função de atacar
-    public abstract void atacar(Personagem alvo);
 }

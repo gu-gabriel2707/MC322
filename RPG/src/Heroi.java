@@ -1,9 +1,14 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public abstract class Heroi extends Personagem{
    //variáveis obrigatórias
-    public int nivel;
-    public int experiencia;
-    public int expProximoNivel;
-    public int sorte;
+    protected int nivel;
+    protected int experiencia;
+    protected int expProximoNivel;
+    protected int sorte;
+    protected List<AcaoDeCombate> acoes;
+    public int mana; //recurso usado para ativar as habilidades
 
     public Heroi(String nome, int pontosDeVida, int forca, int nivel, int experiencia, int sorte) {
         super(nome, pontosDeVida, forca);
@@ -11,18 +16,22 @@ public abstract class Heroi extends Personagem{
         this.experiencia = experiencia;
         this.expProximoNivel = 100;
         this.sorte = sorte;
+        this.mana = 0; //mana inicial
+        this.acoes = new ArrayList<>();
+        acoes.add(new AtaqueHeroi());
+        acoes.add(new AtaqueEspecial());
     }
 
     protected void ganharExperiencia(int xp){
-        experiencia =+ xp; //ganho d xp
+        experiencia =+ xp; //ganho de xp
         System.out.println(nome + " ganhou " + xp + "XP faltam " + (expProximoNivel - experiencia) + "XP para o proximo nível");
                 if (this.experiencia >= this.expProximoNivel) {
-            subirDeNivel();
-        }
+                    subirDeNivel();
+                }
     }
 
-    protected void subirDeNivel() {
-            this.nivel += 1;
+    protected void subirDeNivel() { //Caso chegue o momento, o herói sobe de nível
+            this.nivel += 1; 
             this.experiencia -= this.expProximoNivel;
             this.expProximoNivel *= 1.5;
 
@@ -34,8 +43,8 @@ public abstract class Heroi extends Personagem{
             System.out.println("############################################");
     }
 
-    protected void equiparArma(Arma novaArma){
-        if(this.nivel >= novaArma.getMinNivel()){
+    protected void equiparArma(Arma novaArma){ //Equipar uma nova arma caso o nível seja suficiente e o dano da nova seja maior que a atual
+        if(this.nivel >= novaArma.getMinNivel() && this.arma.getDano() < novaArma.getDano()){
             this.arma = novaArma;
             System.out.println(this.nome + "equipou" + this.arma);
         }else{
@@ -43,13 +52,17 @@ public abstract class Heroi extends Personagem{
         }
     }
 
-    public void exibirStatus(){ //exibir status básico
-        System.out.println("nome:" +nome);
-        System.out.println("pontos de vida:" +pontosDeVida);
-        System.out.println("força:" +forca);
-        System.out.println("nivel:" +nivel);
-        System.out.println("experiencia:" +experiencia);
+    public void escolherAcao(Combatente alvo) { //Vão aparecer algumas mensagens de mana insuficiente para curupira e boto rosa, mas é só para exemplificar o uso do recurso
+        if (mana >= 30)
+            acoes.get(1).executar(this, alvo);
+        else
+            acoes.get(0).executar(this, alvo);
     }
-
-    protected abstract void usarHabilidadeEspecial(Personagem alvo); //definição do usarHabilidade
+    public String getArma(){
+        if(this.arma != null){
+            return this.arma.getNome();
+        }else{
+            return "Nenhuma arma equipada";
+        }
+    }
 }

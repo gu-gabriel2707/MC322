@@ -1,32 +1,8 @@
 public class Saci extends Heroi {
-    public int Type;
-    public int mana; //recurso usado para ativar as habilidades
 
     public Saci(String nome, int pontosDeVida, int forca, int nivel, int experiencia, int expProximoNivel) {
         super(nome, pontosDeVida, forca, nivel, experiencia, expProximoNivel);
-        this.mana = 40; //mana inicial
-        this.Type = 0;
-        arma = new Espada(0,0);
-    }
-
-    public void atacar(Personagem alvo){
-        System.out.println(this.nome + " dá uma voadora em " + alvo.getnome()); //em briga de saci todo chute é voadora
-        int dano = this.forca;
-        alvo.receberDano(dano);
-        this.mana += 10; //meio de recuperar a mana é o ataque comum
-    }
-
-    public void usarHabilidadeEspecial(Personagem alvo){
-        if(mana >= 30){
-            System.out.println(this.nome + " conjura TORNADO em " + alvo.getnome());
-            int danoHabilidade = this.forca * 3; //valor do dano da habilidade
-            alvo.receberDano(danoHabilidade);
-            this.mana -= 30; //gasto da mana para usar habilidade
-        }
-        else{
-            System.out.println(this.nome + " não possúi mana o suficiente para conjurar feitiço poderoso");
-            atacar(alvo); //se não tiver mana o suficiente usará um ataque normal
-        }
+        this.mana = 20; //mana inicial
     }
 
     //introdução do personagem, exibição de status e explicação básica dos ataques da classe
